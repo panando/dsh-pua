@@ -1,5 +1,19 @@
 # 更新记录
 
+## 0.1.4
+
+### 中文
+
+- 重写 README（中英文）：新增「它解决什么问题」章节，用对照表说明 PUA 针对的具体反模式与核心机制；功能概览补齐 L1→L4 压力升级、Loop 验收、风味与角色矩阵、防作弊门四权分离等实际能力；配置章节按新的三分区面板重写；新增「本版改动」章节记录解除全局总闸与 0.1.3 的标记风格改动。
+- 修正安装、卸载与侧边栏说明中的包名：原文档 8 处写的是上游 `@michengai/dsh-pua`，照此操作会安装上游包，现统一为 `@panando/dsh-pua`。
+- 移除「DSH 产品生态」章节与已过期的界面截图；截图展示的是分区改造前的界面，留着会误导。同步从 npm 打包清单中移除失效的 `assets/screenshots`。
+
+### English
+
+- Rewrite both READMEs: add a "problem it solves" section contrasting the specific anti-patterns PUA targets, expand Features with the real capabilities (L1→L4 escalation, Loop verification, the flavor × persona matrix, the integrity guard's four-power separation), rewrite Configuration around the new grouped panel, and add a "fork changes" section.
+- Fix the package name in installation, uninstall, and sidebar instructions: 8 occurrences named upstream `@michengai/dsh-pua`, which would install the upstream package instead of this fork.
+- Remove the DSH product-ecosystem section and the outdated screenshots, which showed the panel before it was grouped. Drop the now-invalid `assets/screenshots` entry from the npm file list.
+
 ## 0.1.3
 
 ### 中文

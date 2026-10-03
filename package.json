@@ -1,6 +1,6 @@
 {
   "name": "@panando/dsh-pua",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "DSH PUA 修订版 — 解除上游全局总闸，让「入口常显」与「功能默认关闭」共存；输入栏菜单一键开关 PUA · Fork of @michengai/dsh-pua with the global kill-switch removed: always-visible entry, per-session toggle",
   "type": "module",
   "license": "Apache-2.0",

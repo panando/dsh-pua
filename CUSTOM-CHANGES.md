@@ -1,6 +1,6 @@
-# dsh-pua（本地定制版）
+# dsh-pua（定制版）
 
-从 `@michengai/dsh-pua@0.3.22` 拷贝并修改而来，包名改为 `dsh-pua`，仅供本机使用（`private: true`）。
+从 `@michengai/dsh-pua@0.3.22` 拷贝并修改而来，包名改为 `@panando/dsh-pua`，以公共包形式发布在 npm 上。
 
 上游项目：https://github.com/MichengAI/dsh-pua （Apache-2.0，保留原 LICENSE / NOTICE）
 

@@ -25,7 +25,7 @@
 
 ## ⚠️ 本仓库是修订版（personal fork）
 
-本仓库基于 **[`@michengai/dsh-pua`](https://github.com/MichengAI/dsh-pua) v0.3.22** 修改而来，包名为 **`dsh-pua`**，与上游是两个独立包（非 npm 发布，仅本地安装）。
+本仓库基于 **[`@michengai/dsh-pua`](https://github.com/MichengAI/dsh-pua) v0.3.22** 修改而来，以 **`@panando/dsh-pua`** 包名发布在 npm 上，与上游是两个独立包（非官方版本）。
 
 **核心改动：解除上游的「全局总闸」。** 上游把全局开关 `alwaysOn` 当作总闸：全局关闭时聊天栏入口不渲染、单会话无法开启、`/pua on` 被拒绝。**入口常显**与**功能默认关闭**因此无法共存。
 

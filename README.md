@@ -25,7 +25,7 @@
 
 ## ⚠️ This repository is a personal fork
 
-This repository is derived from **[`@michengai/dsh-pua`](https://github.com/MichengAI/dsh-pua) v0.3.22**, with the package renamed to **`dsh-pua`**. It is a separate package from upstream (not published to npm; installed locally).
+This repository is derived from **[`@michengai/dsh-pua`](https://github.com/MichengAI/dsh-pua) v0.3.22**, published as the separate package **`@panando/dsh-pua`** on npm. It is a fork of upstream, not an official release.
 
 **Key change: removing the upstream global kill-switch.** Upstream treats the global `alwaysOn` setting as a master gate: when it is off, the composer entry does not render, a session cannot be enabled, and `/pua on` is rejected. An always-visible entry and a default-off feature therefore cannot coexist.
 

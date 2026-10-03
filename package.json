@@ -55,12 +55,12 @@
     }
   },
   "scripts": {
+    "_note": "上游构建脚本需要 src/ 与 scripts/，未随 npm 包分发；lib/ 已是编译产物，无需重新构建",
     "build": "tsc -p tsconfig.json && node scripts/build-client.mjs",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "npm run build && node --test tests/*.test.mjs",
     "check": "npm run typecheck && npm test && npm run verify",
     "verify": "node scripts/verify.mjs",
-    "prepack": "npm run build && npm run verify",
     "test:compat": "node scripts/check-compat.mjs"
   },
   "publishConfig": {

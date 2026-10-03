@@ -1,5 +1,5 @@
 - insert:
-    - id: dsh-pua-remote
-      name: 'dsh-pua/remote'
-    - id: dsh-pua
-      name: 'dsh-pua'
+    - id: panando-pua-remote
+      name: '@panando/dsh-pua/remote'
+    - id: panando-pua
+      name: '@panando/dsh-pua'

@@ -1,7 +1,7 @@
 {
-  "name": "dsh-pua",
-  "version": "0.3.22",
-  "description": "DSH PUA — 为 DeepSeek Harness 提供 PUA 任务推进、角色风味、验收循环和运行状态卡片 · PUA task persistence, personas, verification loops, and live status cards for DeepSeek Harness",
+  "name": "@panando/dsh-pua",
+  "version": "0.1.0",
+  "description": "DSH PUA 修订版 — 解除上游全局总闸，让「入口常显」与「功能默认关闭」共存；输入栏菜单一键开关 PUA · Fork of @michengai/dsh-pua with the global kill-switch removed: always-visible entry, per-session toggle",
   "type": "module",
   "license": "Apache-2.0",
   "engines": {
@@ -168,5 +168,19 @@
   "dependencies": {
     "zod": "4.4.3"
   },
-  "private": true
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/panando/dsh-pua.git"
+  },
+  "homepage": "https://github.com/panando/dsh-pua#readme",
+  "bugs": {
+    "url": "https://github.com/panando/dsh-pua/issues"
+  },
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "pua",
+    "agent",
+    "cordis"
+  ]
 }

@@ -1,0 +1,5 @@
+- insert:
+    - id: dsh-pua-remote
+      name: 'dsh-pua/remote'
+    - id: dsh-pua
+      name: 'dsh-pua'

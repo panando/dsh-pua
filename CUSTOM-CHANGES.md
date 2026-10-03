@@ -1,0 +1,101 @@
+# dsh-pua（本地定制版）
+
+从 `@michengai/dsh-pua@0.3.22` 拷贝并修改而来，包名改为 `dsh-pua`，仅供本机使用（`private: true`）。
+
+上游项目：https://github.com/MichengAI/dsh-pua （Apache-2.0，保留原 LICENSE / NOTICE）
+
+## 为什么要改
+
+上游把「全局开关 `alwaysOn`」当成**总闸**：全局关闭时
+
+1. 聊天栏 PUA 入口直接不渲染（`lib/client.js` 渲染门绑定全局 `enabled`）
+2. 单个会话无法开启（`lib/remote.js` `setSession` 抛错）
+3. `/pua on` 命令被拒绝（`lib/command.js` 拦截）
+
+这导致「入口常显 + 功能默认关闭、随手点开」无法实现。本版**解除这个总闸**：
+入口恒常渲染，PUA 功能默认仍为关闭（`alwaysOn: false`），需要时点入口或 `/pua on` 开启**当前会话**。
+
+## 改了什么（相对上游）
+
+| 文件 | 改动 |
+|------|------|
+| `lib/client.js` | 入口渲染门 `a(ce)` → `a(!0)`：只要配置加载成功就渲染按钮，不再依赖全局 `enabled`；**并同时删除回调中的 `ce\|\|e(!1)`**（见下方「踩坑记录」） |
+| `lib/client.js` | **入口改为下拉菜单**：`Lg` 组件从「按钮 → dialog」重构为「按钮 → `ne.Menu`」，菜单三项：**打开 / 关闭 / 选项**。「打开」「关闭」直接调 `setSession` 生效；当前已开启时「打开」置灰。「选项」才打开配置面板（保留原 dialog portal）。新增中英文文案 `composer.menu.*` |
+| `lib/client.js` | **关态标识**：文字变淡（`opacity:.45`）+ 文字中间一条横线（水平，非斜线），挂在 `.pua-entry-label::after` |
+| `lib/client.js` | **尺寸**：配置面板 430→**540px**（选项面板需要放下拉选择器与 Loop 表单）；入口菜单项缩小（`min-height:0;padding:5px 10px;font-size:13px`，菜单最大宽 160px） |
+| `lib/client.js` | **菜单向上弹出**：给入口菜单加 `side:"top"` + `portal:!0`（DSH 浮层组件用 `side` prop 控制方向，内部输出 `data-side` 并据此定位）。**不要**用 `position:absolute;bottom:100%` 强行定位——那会脱离组件定位机制、连带把对话栏入口 UI 的位置顶偏 |
+| `lib/client.js` | **菜单左对齐**：`align:"end"` → `align:"start"` |
+| `lib/client.js` | **caret 朝向跟随展开状态**：完全照搬 DSH 权限选择器（`_PaunW`）的做法——caret 默认朝下，按钮 `[aria-expanded=true]` 时 `transform:rotate(180deg)` 变朝上，带 `transition:transform .1s` |
+| `lib/client.js` | **面板内下拉选框降高**：触发器 `min-height/height:28px→26px`、字号 14→12px、内边距收紧、箭头 12px；下拉浮层选项同步收窄（`padding:4px 9px;font-size:12.5px`） |
+| `lib/client.js` | **关闭按钮改纯图标**：文字「关闭」→ `IconClose` 图形（复用 `Bn`），26×26 圆形按钮，保留 `aria-label` 与 focus-visible 焦点环 |
+| `lib/client.js` | **下拉选框底色提亮**：底色改`color-mix(in srgb, bg-layer-2 82%, bg-layer-3)`、边框降到 `border-l1`、文字用 `label-primary`。用 color-mix 而非直接指定 layer-3，是因为 DSH 两套主题里浅色主题的 layer-1/2/3 全是 `bluish-00`（同白），只有深色主题才有色阶差异——叠色才能在两种主题下都提亮 |
+| `lib/client.js` | **面板操作按钮缩小**：「恢复默认 / 恢复全部继承 / 放弃修改 / 保存 / 启动 Loop / 取消 Loop / 重新读取」统一压到 `height:22px;padding:0 8px;font-size:11.5px;border-radius:6px`；「放弃/保存」自定义按钮为 `padding:2px 9px;font-size:11.5px`；操作区间距 8→6px |
+| `lib/client.js` | **去掉「已自定义」标签**：会话中被覆盖的字段旁不再显示 `overrideBadge` 文字（布尔字段与内联字段两处渲染节点均已移除），但**保留「恢复默认」按钮**（仍可一键恢复跟随全局）。原 `.pua-override small` 死 CSS 换成按钮的低调描边样式。i18n 字典里的 `overrideBadge` 文案保留未删（无引用但体积可忽略，删动风险大于收益） |
+| `lib/client.js` | **去掉界面语言字段说明**：删除 `descriptions.language` 的中英文案（"auto 跟随宿主界面语言。" / "auto follows the host UI language."）。⚠️ **删对象成员后必须检查是否留下多余逗号**——本次删除在 `descriptions` 里产生 `feedbackFrequency:"...",,integrityGuard:...` 的 `,,` 语法错误，会导致整个 bundle 解析失败白屏，已清理 |
+| `lib/client.js` | **去掉单字段「恢复默认」按钮**：每个被自定义的字段旁原本各有一个「恢复默认」，现全部移除（布尔字段与内联字段两处渲染节点），**只保留面板顶部一个「恢复全部继承」**。随之为失效的 `.pua-override` 系列 CSS 全部清理（容器、按钮统一规则中的该选择器、`[data-inline]` 栅格规则）；i18n 里的 `restoreDefault` / `restoreDefaultAria` 文案保留未删（无引用但改动风险大于收益） |
+| `lib/remote.js` | 删除 `setSession` 中「全局关闭则禁止开启会话」的校验 |
+| `lib/command.js` | 删除 `/pua` 命令的全局闸门；清理随之无用的 `ENABLING` / `enablesPua` |
+| `lib/index.js` / `lib/settings.js` / `cordis.patch.yml` | 身份独立化：`export name`、`SETTINGS_NAMESPACE`、`systemPrompt.section` 名、行 id 全部改为 `dsh-pua`，避免与上游共享设置命名空间 |
+| 全仓 12 处 | 包名 `@michengai/dsh-pua` → `dsh-pua`（含 `package.json`、`cordis.patch.yml`、前后端 typert package、前端 ModuleLoader id） |
+
+**未改动**：PUA 的系统提示注入逻辑、状态卡片 `visible` 判定、防作弊门、风味/角色机制。
+
+## 踩坑记录：为什么必须删掉 `ce||e(!1)`
+
+原始回调是 `ce=>{a(ce),ce||e(!1)}`，其中 `ce` 是**全局 `enabled`**。
+
+第一版只改了前半截 `a(ce)` → `a(!0)`，留下后半截 `ce||e(!1)`，导致：
+
+1. 用户点开弹窗 → `o=true` → `showModal()`
+2. 250ms 轮询 `getGlobal()` 返回 `enabled:false`（因为 `alwaysOn:false`）
+3. `ce||e(!1)` → `false || e(!1)` → `o=false`
+4. `o=false` → portal 里的 `<dialog>` 被卸载 → **弹窗一闪而过**
+
+上游原本 `a(ce)` 让按钮压根不渲染，`e(!1)` 永远触发不到，所以没暴露这个问题。**解除渲染门后，这半截就成了误伤。**
+
+正确改法：`ce=>{a(!0)}` —— 渲染只依赖「配置是否加载成功」，关闭弹窗交给用户主动操作（点关闭/遮罩/Esc）。
+
+> 教训：解除一处门禁时，必须连带检查该表达式里**依赖同一状态的其他分支**，不能只改自己看到的那一半。
+
+## 安装到 DSH profile
+
+在 profile 的 `cordis.patch.yml` 中，让本插件占独立行 id（避免与上游行 id `michengai-pua` 冲突）：
+
+```yaml
+- id: dsh-pua-remote
+  disabled: false
+- id: dsh-pua
+  name: 'dsh-pua'
+  disabled: false
+  config:
+    alwaysOn: false        # 功能默认关闭；入口仍常显
+```
+
+profile 的 `package.json` 依赖指向本地路径（把 `<本仓库路径>` 换成你自己的克隆位置）：
+
+```json
+"dsh-pua": "file:<本仓库路径>"
+```
+
+> 原插件 `@michengai/dsh-pua` 与本插件包名不同，是两个独立包，可并存；验证本插件正常后再从 profile 移除原插件。
+
+安装后**必须重启 DSH**（或重载 profile），仅刷新浏览器无效。
+
+## 使用
+
+- 聊天输入栏右侧常显 **PUA** 入口：点开可开启/关闭**当前会话**、调整风味与角色、启动/取消 Loop。
+- 会话关闭时按钮显示斜线；全局默认关闭不影响入口显示。
+- `/pua on` / `/pua off` 仅作用于当前会话，不改全局默认。
+
+## 回滚
+
+删掉 profile 里 `dsh-pua` 的两行 patch 与 `package.json` 依赖，重启 DSH 即可；原插件不受影响。
+
+## 重新同步上游（如需）
+
+本目录已与上游 0.3.22 脱钩。若要取上游新版本后重新打补丁，参照本 README 的「改了什么」表在新版本上重做三处改动并改包名。
+
+## 已知限制
+
+- `lib/*.js` 是上游已构建产物（压缩），无 `src/`。改动为定点文本替换，若上游重构相关代码需重新定位。
+- `.js.map` 源映射未同步更新（仅影响调试器映射，不影响运行）。

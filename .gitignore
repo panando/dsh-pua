@@ -1,0 +1,9 @@
+# 依赖副本（DSH profile 以 file: 方式安装，本仓库仅存源码）
+node_modules/
+
+# 上游 npm 包元数据
+*.tgz
+
+# 本机/编辑器
+.DS_Store
+*.log

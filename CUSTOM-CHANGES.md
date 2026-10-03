@@ -59,33 +59,53 @@
 
 ## 安装到 DSH profile
 
-在 profile 的 `cordis.patch.yml` 中，让本插件占独立行 id（避免与上游行 id `michengai-pua` 冲突）：
+### 方式一：从 npm 安装（推荐）
 
-```yaml
-- id: dsh-pua-remote
-  disabled: false
-- id: dsh-pua
-  name: 'dsh-pua'
-  disabled: false
-  config:
-    alwaysOn: false        # 功能默认关闭；入口仍常显
+```bash
+dsh plugin --profile <你的profile> add @panando/dsh-pua
 ```
 
-profile 的 `package.json` 依赖指向本地路径（把 `<本仓库路径>` 换成你自己的克隆位置）：
+或直接在 DSH 侧边栏「插件」→「添加插件」输入 `@panando/dsh-pua`。
+
+插件的 `cordis.patch.yml` 会自动插入两行配置，**通常不需要手改 profile**。
+
+### 方式二：从本地路径安装（开发调试用）
+
+在 profile 的 `package.json` 中：
 
 ```json
-"dsh-pua": "file:<本仓库路径>"
+"@panando/dsh-pua": "file:<本仓库路径>"
 ```
 
-> 原插件 `@michengai/dsh-pua` 与本插件包名不同，是两个独立包，可并存；验证本插件正常后再从 profile 移除原插件。
+并在 `dsh.profile.bundles` 数组中加入 `"@panando/dsh-pua"`。
+
+> ⚠️ **注意**：从本地路径开发时，如果之后把 `package.json` 的 `name` 改成 scoped 名（如 `@panando/dsh-pua`），**必须同步更新 profile 里的依赖键名和 bundles 项**，否则 pnpm 会检测到 spec 不一致并**静默卸载**该包。
+
+### 手动配置 patch（可选）
+
+若需手动指定默认行为，在 profile 的 `cordis.patch.yml` 中：
+
+```yaml
+- insert:
+    - id: panando-pua-remote
+      name: '@panando/dsh-pua/remote'
+    - id: panando-pua
+      name: '@panando/dsh-pua'
+      config:
+        alwaysOn: false        # 功能默认关闭；入口仍常显
+```
+
+> 行 id 用 `panando-pua*` 而非上游的 `michengai-pua`，两个包可并存互不冲突。
 
 安装后**必须重启 DSH**（或重载 profile），仅刷新浏览器无效。
 
 ## 使用
 
-- 聊天输入栏右侧常显 **PUA** 入口：点开可开启/关闭**当前会话**、调整风味与角色、启动/取消 Loop。
-- 会话关闭时按钮显示斜线；全局默认关闭不影响入口显示。
-- `/pua on` / `/pua off` 仅作用于当前会话，不改全局默认。
+- 聊天输入栏右侧常显 **PUA** 入口：点击展开下拉菜单，含**打开 PUA / 关闭 PUA / 选项**三项
+- 「打开」「关闭」直接作用于**当前会话**，无需进面板保存；已开启时「打开」置灰
+- 「选项」打开配置面板，可调整风味、角色、子代理策略与 Loop 参数
+- 会话关闭时入口文字变淡并显示横线；全局默认关闭不影响入口显示
+- `/pua on` / `/pua off` 同样仅作用于当前会话，不改全局默认
 
 ## 回滚
 

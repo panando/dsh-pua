@@ -34,7 +34,7 @@ TRANSCRIPT_PATH="$(printf '%s' "$HOOK_INPUT" | jq -r '.transcript_path // empty'
 # user tool_result blocks, input prompts, and hidden thinking are not behavior.
 if ! jq -se 'any(.[]; ((.type // .role) == "assistant") and
   any(.message.content[]?; .type == "text" and
-    ((.text // "") | test("PUA生效|\\[Auto-select:|\\[PIP-REPORT\\]|\\[PUA-REPORT\\]|\\[PUA-DIAGNOSIS\\]"))))' \
+    ((.text // "") | test("PUA生效|自动选择|自動選択|\\[Auto-select:|\\[PIP-REPORT\\]|\\[PUA-REPORT\\]|\\[PUA-DIAGNOSIS\\]"))))' \
   "$TRANSCRIPT_PATH" >/dev/null 2>&1; then exit 0; fi
 
 [ -n "${HOME:-}" ] || exit 0

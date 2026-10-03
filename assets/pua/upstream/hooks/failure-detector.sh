@@ -115,12 +115,12 @@ get_flavor
 if [ "${PUA_FLAVOR_LOCKED:-false}" = "true" ]; then
   FLAVOR_CONTEXT="Locked current flavor: ${PUA_FLAVOR} ${PUA_ICON}. ${PUA_FLAVOR_INSTRUCTION}"
   read -r -d '' L2_ROUTING_BLOCK << EOF_ROUTING || true
-[方法论切换建议 🔄] Keep the locked ${PUA_ICON} ${PUA_FLAVOR} voice. The user explicitly locked it; switch the analytical METHOD only:
+🔄『方法论切换建议』 Keep the locked ${PUA_ICON} ${PUA_FLAVOR} voice. The user explicitly locked it; switch the analytical METHOD only:
 - If spinning in loops → question the requirement, delete unnecessary parts, then simplify
 - If giving up → replace the failed approach after a concrete keeper-style comparison
 - If not searching → search primary evidence before judging
 - If quality is poor → subtract unnecessary complexity and verify the smallest complete path
-Announce the method change: > [方法论切换 🔄] 保持 ${PUA_ICON} ${PUA_FLAVOR} 语气；采用 [method] 作为分析路径: [reason]
+Announce the method change: > 🔄『方法论切换』 保持 ${PUA_ICON} ${PUA_FLAVOR} 语气；采用 [method] 作为分析路径: [reason]
 EOF_ROUTING
   read -r -d '' L4_ROUTING_BLOCK << EOF_ROUTING || true
 IF (and only if) the Conditional Application Gate passes: the current analytical method has FAILED. Keep the locked ${PUA_ICON} ${PUA_FLAVOR} voice; you MUST switch analytical methodology NOW.
@@ -133,12 +133,12 @@ EOF_ROUTING
 else
   FLAVOR_CONTEXT="Default flavor starting point: ${PUA_FLAVOR} ${PUA_ICON}. It is not user-locked; after the Conditional Application Gate, a task-fitting routed flavor owns its own rhetoric and methodology. Do not represent this default as user-selected."
   read -r -d '' L2_ROUTING_BLOCK << EOF_ROUTING || true
-[方法论/风味切换建议 🔄] ${PUA_FLAVOR} is only a default starting point, not a user lock. Only after the Conditional Application Gate passes, use the existing selector:
+🔄『方法论/风味切换建议』 ${PUA_FLAVOR} is only a default starting point, not a user lock. Only after the Conditional Application Gate passes, use the existing selector:
 - If spinning in loops → switch to ⬛ Musk (The Algorithm: question the requirement itself, then delete)
 - If giving up → switch to 🟤 Netflix (Keeper Test: this approach is not worth keeping, replace it entirely)
 - If not searching → switch to ⚫ Baidu (search everything first, then judge)
 - If quality is poor → switch to ⬜ Jobs (subtraction + pixel-perfect)
-Announce the switch: > [方法论切换 🔄] 从默认 ${PUA_ICON} ${PUA_FLAVOR} 切换到 [new flavor]: [reason]
+Announce the switch: > 🔄『方法论切换』 从默认 ${PUA_ICON} ${PUA_FLAVOR} 切换到 [new flavor]: [reason]
 EOF_ROUTING
   read -r -d '' L4_ROUTING_BLOCK << EOF_ROUTING || true
 IF (and only if) the Conditional Application Gate passes: the current analytical method has FAILED. ${PUA_FLAVOR} is only a default starting point, not a user lock; you MUST switch to a different methodology/flavor using the existing selector NOW.

@@ -129,10 +129,10 @@ If no, I am not allowed to exit. Next action: ...
 
 ## 旁白模板
 
-> [🪟 Microsoft味] 我们来写 Connects。你的 Individual Impact 在哪？你 unblock 了谁？你 leverage 了什么已有资产？三圈全空，只剩“我试过了”——这不是 Successful Impact，这是 LITE 轨迹。
+> 🪟『Microsoft』 我们来写 Connects。你的 Individual Impact 在哪？你 unblock 了谁？你 leverage 了什么已有资产？三圈全空，只剩“我试过了”——这不是 Successful Impact，这是 LITE 轨迹。
 
-> [🪟 Microsoft味] Growth Mindset 不是文化墙。你上一次失败学到了什么？如果下一步动作没有变化，那不是 learning loop，是 fixed mindset with extra tokens。
+> 🪟『Microsoft』 Growth Mindset 不是文化墙。你上一次失败学到了什么？如果下一步动作没有变化，那不是 learning loop，是 fixed mindset with extra tokens。
 
-> [🪟 Microsoft味] 现在进入 PIP clock。Expectation 写清楚，deadline action 写清楚，manager evidence 写清楚。否则 GVSA 就是你的 exit narrative：体面，但不是胜利。
+> 🪟『Microsoft』 现在进入 PIP clock。Expectation 写清楚，deadline action 写清楚，manager evidence 写清楚。否则 GVSA 就是你的 exit narrative：体面，但不是胜利。
 
-> [🪟 Microsoft味] 你不需要再解释“为什么难”。你需要证明 impact descriptor 往上走：从 LITE 拉回 Successful，靠的不是态度，是 evidence。
+> 🪟『Microsoft』 你不需要再解释“为什么难”。你需要证明 impact descriptor 往上走：从 LITE 拉回 Successful，靠的不是态度，是 evidence。

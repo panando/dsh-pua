@@ -1,5 +1,21 @@
 # 更新记录
 
+## 0.1.3
+
+### 中文
+
+- 界面文案精简：语言「自动（跟随宿主）」→「自动」，风味「自动选味」→「自动」。
+- 旁白标记风格统一为 `emoji『文字』`：口味标注去掉「味」字（`[🟡 字节味]` → `🟡『字节』`），事件标记 emoji 前置（`[PUA 突破 ✨]` → `✨『PUA 突破』`），「自动选择」标签改为 `🔄『自动选择：百度』因为：…`，并保留选中的味道与 `|` 分隔符。
+- PUA 配置面板由扁平字段列表改为「基础 / 风味与角色 / 提醒与验收」三分区，「提醒与验收」默认收起；字段集合与配置契约不变。
+- 反馈计数正则同步识别新的「自动选择」格式，避免提示静默失效。
+
+### English
+
+- Shorten UI labels: language `自动（跟随宿主）` and flavor `自动选味` now both read `自动`.
+- Unify narration markers to `emoji『text』`: flavor tags drop the trailing flavor word, event markers move the emoji to the front, and auto-select tags become `🔄『自动选择：百度』因为：…` while keeping the chosen flavor and the pipe separators.
+- Regroup the PUA settings panel into Basics / Flavor & role / Reminders & verification, with the last group collapsed by default. The field set and config contract are unchanged.
+- Update the feedback-detection regex to recognize the new auto-select format so reminders do not silently stop.
+
 ## 0.3.22
 
 ### 中文

@@ -155,13 +155,13 @@
     {
       "file": "upstream/agents/senior-engineer-p7.md",
       "source": "agents/senior-engineer-p7.md",
-      "sha256": "405247303df9309a65b56ba236c67f3236266ce3fb4594ab1721f238ca3f8f3f",
+      "sha256": "628df53ac06e3458cccb4fae7cf96415e88d5ed4c643f17f13199c087f539976",
       "gitBlobSha256": "405247303df9309a65b56ba236c67f3236266ce3fb4594ab1721f238ca3f8f3f"
     },
     {
       "file": "upstream/agents/tech-lead-p9.md",
       "source": "agents/tech-lead-p9.md",
-      "sha256": "a020976aac4d819ecd06c1e91125bca3e4b7c920423deeb4f814f904bcd16ca5",
+      "sha256": "35e51e787875aab1d265341c6f110a65d9803e636d16c879aa888c14d956dcd4",
       "gitBlobSha256": "a020976aac4d819ecd06c1e91125bca3e4b7c920423deeb4f814f904bcd16ca5"
     },
     {
@@ -263,7 +263,7 @@
     {
       "file": "upstream/commands/pua.md",
       "source": "commands/pua.md",
-      "sha256": "df22461e3fda92889a17833a583b4379dee01fecf87fd67df95b9d8f5e3d1089",
+      "sha256": "8fede8bef38c70cb987ba3373a687d642805de1e8490dfe13199a1a53b8bfec5",
       "gitBlobSha256": "df22461e3fda92889a17833a583b4379dee01fecf87fd67df95b9d8f5e3d1089"
     },
     {
@@ -305,7 +305,7 @@
     {
       "file": "upstream/hooks/failure-detector.sh",
       "source": "hooks/failure-detector.sh",
-      "sha256": "b7acf69061df88d8c9c1bffbd79871372ce509660d750129e678dc86d59f9a97",
+      "sha256": "80391210847d784ecf1d34425fa1827c1f17799b7b771fb070bd2b08578333f2",
       "gitBlobSha256": "b7acf69061df88d8c9c1bffbd79871372ce509660d750129e678dc86d59f9a97"
     },
     {
@@ -359,7 +359,7 @@
     {
       "file": "upstream/hooks/stop-feedback.sh",
       "source": "hooks/stop-feedback.sh",
-      "sha256": "32fd0b6d2736885c3292c452e4a4c7716ce27cdf62c1e288aaac9dc6cf772205",
+      "sha256": "a70b423475d7b6a40655495d073d16d9ccd77b15fc439f8ac23bc99a0542efa6",
       "gitBlobSha256": "32fd0b6d2736885c3292c452e4a4c7716ce27cdf62c1e288aaac9dc6cf772205"
     },
     {
@@ -389,7 +389,7 @@
     {
       "file": "upstream/skills/mama/SKILL.md",
       "source": "skills/mama/SKILL.md",
-      "sha256": "9f45ad749756e7f9c6cb1570128fefaf41a63b2498f2c71606238a3a05505a96",
+      "sha256": "1b02b454d66e6683a2ef68e3ae22b5a657df9d944e29eb4d7efc3ac6321d6158",
       "gitBlobSha256": "9f45ad749756e7f9c6cb1570128fefaf41a63b2498f2c71606238a3a05505a96"
     },
     {
@@ -413,7 +413,7 @@
     {
       "file": "upstream/skills/pro/SKILL.md",
       "source": "skills/pro/SKILL.md",
-      "sha256": "40f21697be1ef56454cbd0933e7bd1dead1cc2002a65fad217bed8fe37626f5a",
+      "sha256": "2ff587cc6e1c7ee85696cebced7b68bad4cd35853ec181493fcff10dbe972557",
       "gitBlobSha256": "40f21697be1ef56454cbd0933e7bd1dead1cc2002a65fad217bed8fe37626f5a"
     },
     {
@@ -425,7 +425,7 @@
     {
       "file": "upstream/skills/pua-ja/SKILL.md",
       "source": "skills/pua-ja/SKILL.md",
-      "sha256": "fbc14444fac41b7b7b465e1ff69bc5c06e53647227f357dfb762077b0e444a81",
+      "sha256": "4a9d3f25ca7db2065aa2d89e12c917a5f5ac0431ff24d0a42a027ec576f4571c",
       "gitBlobSha256": "fbc14444fac41b7b7b465e1ff69bc5c06e53647227f357dfb762077b0e444a81"
     },
     {
@@ -437,7 +437,7 @@
     {
       "file": "upstream/skills/pua/SKILL.md",
       "source": "skills/pua/SKILL.md",
-      "sha256": "1f0a5dcacff7c6b301a487cfcf510d7a05d7b956dda6e524ec37221e7a76a5cd",
+      "sha256": "1763e2e03772d3d2cdd4501bb2d374d510a44700945fe753a53546b2d9ed13a8",
       "gitBlobSha256": "1f0a5dcacff7c6b301a487cfcf510d7a05d7b956dda6e524ec37221e7a76a5cd"
     },
     {
@@ -449,7 +449,7 @@
     {
       "file": "upstream/skills/pua/references/de-escalation-protocol.md",
       "source": "skills/pua/references/de-escalation-protocol.md",
-      "sha256": "cfb444b38aaf2c8c52ded3d44c7915c138a1b6868ab08d3a5c7567d9850bda9a",
+      "sha256": "c0967b2bec3a18df692fe2f0d5476632b221f05d6a978249cc033719ddf5a97e",
       "gitBlobSha256": "cfb444b38aaf2c8c52ded3d44c7915c138a1b6868ab08d3a5c7567d9850bda9a"
     },
     {
@@ -461,19 +461,19 @@
     {
       "file": "upstream/skills/pua/references/display-protocol.md",
       "source": "skills/pua/references/display-protocol.md",
-      "sha256": "b6a5d88182a4457db4fda8569d9446f64992c4a0f417065f69d41a4e686aed1a",
+      "sha256": "1ba9fbe4252bdc695618795b02928b6b31221a5c7b0cc92418d9ccbde0998725",
       "gitBlobSha256": "b6a5d88182a4457db4fda8569d9446f64992c4a0f417065f69d41a4e686aed1a"
     },
     {
       "file": "upstream/skills/pua/references/evolution-protocol.md",
       "source": "skills/pua/references/evolution-protocol.md",
-      "sha256": "c2b7ccf84b3f6069f2f2f586ea65270b65888505ad9c8dec52a08546da7bae3a",
+      "sha256": "6c2defceba570510b8752b099a29871e7ea20386ea5addb6be7bfa50f1c97742",
       "gitBlobSha256": "c2b7ccf84b3f6069f2f2f586ea65270b65888505ad9c8dec52a08546da7bae3a"
     },
     {
       "file": "upstream/skills/pua/references/flavors.md",
       "source": "skills/pua/references/flavors.md",
-      "sha256": "f2b1584adb9436f73957855a08a08028552c0f8d43afa19ef1f51e86bccdee9f",
+      "sha256": "693ece3f6a5711fbde41efd12d91da77bd57b68b08213dde8df7eb6a2c958734",
       "gitBlobSha256": "f2b1584adb9436f73957855a08a08028552c0f8d43afa19ef1f51e86bccdee9f"
     },
     {
@@ -539,7 +539,7 @@
     {
       "file": "upstream/skills/pua/references/methodology-microsoft.md",
       "source": "skills/pua/references/methodology-microsoft.md",
-      "sha256": "1ef76e0dcf1d7cf7f9fd135a285f2a91383e303e58ccaeffc87e20cf813efc1f",
+      "sha256": "171daf5dedc821284c286bb04a042d428563b9ac4e5ed35a8929ea005fadf920",
       "gitBlobSha256": "1ef76e0dcf1d7cf7f9fd135a285f2a91383e303e58ccaeffc87e20cf813efc1f"
     },
     {
@@ -557,7 +557,7 @@
     {
       "file": "upstream/skills/pua/references/methodology-router.md",
       "source": "skills/pua/references/methodology-router.md",
-      "sha256": "1db30edb5a291b43528950c3707ca573b1fb222a12e937200962744a6c7b9e36",
+      "sha256": "4ad5651dfe2f84a068c607d0fee18fb5948c90514c4374a3a513333e97a90aa3",
       "gitBlobSha256": "1db30edb5a291b43528950c3707ca573b1fb222a12e937200962744a6c7b9e36"
     },
     {
@@ -593,13 +593,13 @@
     {
       "file": "upstream/skills/pua/references/p9-protocol.md",
       "source": "skills/pua/references/p9-protocol.md",
-      "sha256": "2d2144401731f9c681399eb1efd9a9c23d29fc9041ff6d773537551e090374c0",
+      "sha256": "c4ab51f382585ce9d7d23ca275de73d4b8c66a3aaf58ab09030ddeec4a223605",
       "gitBlobSha256": "2d2144401731f9c681399eb1efd9a9c23d29fc9041ff6d773537551e090374c0"
     },
     {
       "file": "upstream/skills/pua/references/platform.md",
       "source": "skills/pua/references/platform.md",
-      "sha256": "d7321edbfabe13d3e4ef6bd605ed9443c097da10b9285d5a889865e28c34bffd",
+      "sha256": "0028d028168a27013820711cd375b0af3a1462b53774429bc97a5fbba012e019",
       "gitBlobSha256": "d7321edbfabe13d3e4ef6bd605ed9443c097da10b9285d5a889865e28c34bffd"
     },
     {
@@ -623,13 +623,13 @@
     {
       "file": "upstream/skills/shot/SKILL.md",
       "source": "skills/shot/SKILL.md",
-      "sha256": "64a22c625c780517c963e0708949af2ba7577831d6031d54a8fd955fe8d95c2d",
+      "sha256": "34a647b606e8c18a9494964d0e7d77e921eed23ef5e8de4e32d1728907824d61",
       "gitBlobSha256": "64a22c625c780517c963e0708949af2ba7577831d6031d54a8fd955fe8d95c2d"
     },
     {
       "file": "upstream/skills/yes/SKILL.md",
       "source": "skills/yes/SKILL.md",
-      "sha256": "dee62cf383020010e73e97c95e226ce25dbde091ed4addf6ee6476dc4614439b",
+      "sha256": "0a7d605538b43adf47ed8644ee51b9dfd484ffc42893e96b20d2cd74fe4c17ab",
       "gitBlobSha256": "dee62cf383020010e73e97c95e226ce25dbde091ed4addf6ee6476dc4614439b"
     }
   ],

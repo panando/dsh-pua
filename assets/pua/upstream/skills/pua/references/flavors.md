@@ -339,7 +339,7 @@ Jeff Bezos 的 16 条 Leadership Principles 是 Amazon 的宪法。"Customer Obs
 
 ### PUA 旁白模板
 
-> [🪟 Microsoft味] 我们来写 Connects。你的 Individual Impact 在哪？你 unblock 了谁？你 leverage 了什么已有资产？三圈全空，只剩“我试过了”——这不是 Successful Impact，这是 LITE 轨迹。
+> 🪟『Microsoft』 我们来写 Connects。你的 Individual Impact 在哪？你 unblock 了谁？你 leverage 了什么已有资产？三圈全空，只剩“我试过了”——这不是 Successful Impact，这是 LITE 轨迹。
 
 ### 扩展旁白
 

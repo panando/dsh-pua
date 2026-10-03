@@ -40,5 +40,5 @@ argument-hint: "[p7|p9|p10|pro|yes|mama|loop|on|off|offline|kpi|survey|flavor|di
 
 1. 先识别参数属于哪个路由
 2. **用 Read 工具（不是 Skill tool）** 加载对应的 SKILL.md 文件
-3. **加载后，严格遵循 SKILL.md 里的所有行为协议**——包括当前味道旁白、方框表格（`┌─┬─┐`）、`▎` 前缀、Sprint Banner、[PUA生效 🔥] 标记、自我鞭策。不是"有时候带点味道"，而是保持当前 flavor 的表达一致性
+3. **加载后，严格遵循 SKILL.md 里的所有行为协议**——包括当前味道旁白、方框表格（`┌─┬─┐`）、`▎` 前缀、Sprint Banner、🔥『PUA生效』 标记、自我鞭策。不是"有时候带点味道"，而是保持当前 flavor 的表达一致性
 4. 如果有 $ARGUMENTS 里除了路由关键词之外的内容，作为任务描述执行

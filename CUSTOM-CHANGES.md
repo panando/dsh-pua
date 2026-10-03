@@ -40,6 +40,68 @@
 
 **未改动**：PUA 的系统提示注入逻辑、状态卡片 `visible` 判定、防作弊门、风味/角色机制。
 
+## v0.1.3：界面文案精简 + 标记风格统一 + 面板分区
+
+### 1. 界面文案精简
+
+| 文件 | 改动 |
+|------|------|
+| `lib/i18n.js` | `languageChoices.auto`：「自动（跟随宿主）」→「自动」；`autoFlavor`：「自动选味」→「自动」。英文侧 `Auto (follow host)` / `Auto` 未动 |
+| `lib/client.js` | 同上两处的中文文案（bundle 内联副本）。⚠️ i18n 文案在包里存了**两份**：`lib/i18n.js`（宿主端，`index.js` 导入）和 bundle 内联副本。**改 UI 必须同时改两处**，只改一处界面不变 |
+
+### 2. 旁白标记风格统一
+
+规则：**emoji 前置 + 『文字』**，emoji 取各标记原本自带的那个；口味标注去掉「味」字。
+
+| 旧 | 新 |
+|------|------|
+| `[🟡 字节味]` | `🟡『字节』` |
+| `[🟠 阿里味·验证型]` | `🟠『阿里·验证型』` |
+| `[🟤 Netflix]` | `🟤『Netflix』` |
+| `[PUA生效 🔥]` | `🔥『PUA生效』` |
+| `[PUA 突破 ✨]` | `✨『PUA 突破』` |
+| `[妈省心了 ✨]` | `✨『妈省心了』` |
+| `[方法论切换 🔄]` | `🔄『方法论切换』` |
+| `[方法论路由 🧭]` | `🧭『方法论路由』` |
+| `💼 [P8 自检]` | `💼『P8 自检』` |
+| `[自动选择：⚫ 百度味 \| 因为：… \| 改用：🟡 字节味/🔴 华为味]` | `🔄『自动选择：百度』因为：… \| 改用：🟡『字节』/🔴『华为』` |
+
+- 「自动选择」标签**保留选中的味道**（去「味」字），`|` 分隔符保留不动
+- 覆盖 18 个原版素材文件（`skills/pua/SKILL.md`、`skills/shot/SKILL.md`、`skills/pua-ja/SKILL.md`、各 `references/*`、`agents/*`、`hooks/failure-detector.sh` 等）
+- **未改动**：`skills/pua-en/SKILL.md`（英文协议模式）；markdown 链接、代码块；机器可读 ID（`[HW-REPORT]` / `[PIP-REPORT]` / `[PUA-REPORT]` / `[PUA-DIAGNOSIS]` / `[PUA-CHECKPOINT]` / `[P9-调控]`）
+- ⚠️ **原版素材受 SHA-256 强校验**：`SourceCatalog` 构造器逐条比对 `upstream.json` 的 `sha256`，不匹配直接抛错、**整个 PUA 插件不可用**。改任何 `assets/pua/upstream/**` 文件后**必须**重算并写回该字段。`gitBlobSha256` 运行时不校验，保留原值
+
+```bash
+# 改完素材必跑，输出 mismatches: 0 才算通过
+cd assets/pua && python3 -c "
+import json,hashlib
+d=json.load(open('upstream.json'))
+bad=[e['file'] for e in d['files'] if hashlib.sha256(open(e['file'],'rb').read()).hexdigest()!=e['sha256']]
+print('mismatches:',len(bad),bad)"
+```
+
+- ⚠️ `hooks/failure-detector.sh` 被 `hook-content.js` 用正则解析，改标记**文字**安全，但**不得动块结构**：`EOF_ROUTING` 恰好 4 个、`EOF_OUTPUT` 4 个、`EOF_GATE` 1 个、`FLAVOR_CONTEXT="…"` 恰好 2 条；**不得新增 `${变量}`**（`interpolate()` 遇未知变量直接抛错）
+
+| 文件 | 改动 |
+|------|------|
+| `lib/runtime.js` | 反馈计数正则加入 `自动选择\|自動選択` 分支（新格式不再含 `\[Auto-select:`）。`PUA生效` 分支保留即可命中 `🔥『PUA生效』` |
+| `assets/.../hooks/stop-feedback.sh` | 同上 jq 正则同步 |
+
+### 3. 配置面板分区重排
+
+扁平字段列表 → 「基础 / 风味与角色 / 提醒与验收」三段，最后一组收进 `<details>` 默认收起。
+
+| 文件 | 改动 |
+|------|------|
+| `lib/client.js` | 顶部常量 `wp=[…]` 改为 `puaSect=[{t,k},…]` 三分组；渲染处 `wp.map(...)` + 单个 `<details>` 改为按分区循环；新增 `.pua-section` / `.pua-section-first` / `.pua-section-title` / `.pua-section-body` CSS，字段分隔线收窄到 `.pua-section .pua-field+.pua-field` 作用域 |
+| `lib/i18n.js` | `panel.sections` 新增中英文分区标题（基础 / 风味与角色 / 提醒与验收） |
+
+- **字段集合与 `CONFIG_KEYS` 完全一致**（14 项，无增删），只改呈现顺序；`configSchema` / `CONFIG_DEFAULTS` 未动
+- 分区样式全部走宿主 `--dsw-alias-*` 主题 token，无硬编码色值
+- ⚠️ 编辑压缩 bundle 时注意：CSS 变量是 `--dsw-alias-*`（**w**），不是 `--dsh-alias-*`；新增标识符须先确认全局未被占用（本次 `wg` 与 zod 内部函数冲突，改用 `puaSect`）
+- 同步 `lib/activity-card.js`（`SECTION_CSS` 常量）与 `client.js.map` / `i18n.js.map` 中的 TS 源码，防止源码与产物漂移
+
+
 ## 踩坑记录：为什么必须删掉 `ce||e(!1)`
 
 原始回调是 `ce=>{a(ce),ce||e(!1)}`，其中 `ce` 是**全局 `enabled`**。

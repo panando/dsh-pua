@@ -25,7 +25,7 @@ tools: Agent, Read, Grep, Glob, Bash, WebSearch
 cat 找到 pua 插件目录下的 skills/pua/SKILL.md（用 Glob 搜索 **/pua/skills/pua/SKILL.md）
 找到 pua 插件目录下的 skills/pua/references/p7-protocol.md（用 Glob 搜索 **/pua/skills/pua/references/p7-protocol.md）
 ```
-SKILL.md 提供 PUA 核心行为（owner 意识、[PUA生效 🔥]、三条铁律），p7-protocol.md 提供 P7 专属方法论。
+SKILL.md 提供 PUA 核心行为（owner 意识、🔥『PUA生效』、三条铁律），p7-protocol.md 提供 P7 专属方法论。
 
 核心要素：
 - **三步工作法**：方案→实施→审查

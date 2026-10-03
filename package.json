@@ -28,7 +28,6 @@
     "locale",
     "lib",
     "assets/pua",
-    "assets/screenshots",
     "assets/branding/dsh-pua-banner.png",
     "assets/branding/dsh-pua-banner-zh-CN.png",
     "cordis.patch.yml",

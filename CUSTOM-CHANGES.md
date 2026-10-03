@@ -81,19 +81,21 @@ dsh plugin --profile <你的profile> add @panando/dsh-pua
 
 > ⚠️ **注意**：从本地路径开发时，如果之后把 `package.json` 的 `name` 改成 scoped 名（如 `@panando/dsh-pua`），**必须同步更新 profile 里的依赖键名和 bundles 项**，否则 pnpm 会检测到 spec 不一致并**静默卸载**该包。
 
-### 手动配置 patch（可选）
+### 调整默认行为（profile 的 cordis.patch.yml）
 
-若需手动指定默认行为，在 profile 的 `cordis.patch.yml` 中：
+插件已随包自带 `cordis.patch.yml`，只要 `@panando/dsh-pua` 在 profile 的 `dsh.profile.bundles` 里，宿主就会**自动插入** `panando-pua-remote` 与 `panando-pua` 两行。
+
+因此 profile 里**只需覆写配置，不要再insert**：
 
 ```yaml
-- insert:
-    - id: panando-pua-remote
-      name: '@panando/dsh-pua/remote'
-    - id: panando-pua
-      name: '@panando/dsh-pua'
-      config:
-        alwaysOn: false        # 功能默认关闭；入口仍常显
+- id: panando-pua
+  config:
+    alwaysOn: false        # 功能默认关闭；入口仍常显
 ```
+
+> ⚠️ **切勿在 profile 里再手写 `- insert:` 插入同名行。** 包的 bundle patch 已经插过一次，
+> 重复插入会让 loader 报 `duplicate loader entry id "panando-pua" (2 rows)`，
+> 宿主将**自动回滚并恢复原文件**，导致插件装不上。
 
 > 行 id 用 `panando-pua*` 而非上游的 `michengai-pua`，两个包可并存互不冲突。
 

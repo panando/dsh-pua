@@ -125,3 +125,10 @@ test("client 配置面板把 fidelity 独立为提示词加载分区并带说明
   assert.match(clientSource, /descriptions:\{fidelity:"默认按需加载规则切片/u);
   assert.doesNotMatch(clientSource, /"integrityGuard","fidelity"/u);
 });
+
+test("client 配置面板字段标签不再与分区标题重复", () => {
+  assert.match(clientSource, /fidelity:"加载策略"/u);
+  assert.match(clientSource, /fidelity:"Prompt strategy"/u);
+  assert.doesNotMatch(clientSource, /fidelity:"提示词加载"/u);
+  assert.doesNotMatch(clientSource, /fidelity:"Prompt loading"/u);
+});

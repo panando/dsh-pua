@@ -1,6 +1,6 @@
 {
   "name": "@panando/dsh-pua",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "DSH PUA 修订版 — 入口常显、默认关闭、提示词按需渐进加载（lean/balanced/full）；pua_reference 支持 index/section · Fork of @michengai/dsh-pua with always-visible entry, default-off, progressive prompt loading",
   "type": "module",
   "license": "Apache-2.0",

@@ -1,5 +1,17 @@
 # 更新记录
 
+## 0.2.1
+
+### 中文
+
+- 更新 README 与 npm 简介，补充提示词渐进加载、`fidelity: lean | balanced | full` 与 `pua_reference path=index / section`。
+- 功能代码与 `0.2.0` 相同，仅文档与包元数据更新。
+
+### English
+
+- Updated README and npm description for progressive prompt loading, `fidelity: lean | balanced | full`, and `pua_reference path=index / section`.
+- Same functional code as `0.2.0`; documentation and package metadata only.
+
 ## 0.2.0
 
 ### 中文

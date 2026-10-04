@@ -42,7 +42,8 @@ The core mechanism is **pressure that escalates with failure count and drops aft
 - **Verification Loops**: start a Loop to keep the agent correcting until verification passes, the iteration cap is hit, or you cancel.
 - **Narration and flavors**: 15 company-inspired flavors (Alibaba, ByteDance, Huawei, Tencent, Baidu, Meituan, Jobs, Musk, …) across 10 persona modes (standard P8, P7, P9, P10, Pro, Yes, Mama, Shot, Chinese/English protocols). Narration opens with the active flavor, and wording and keywords follow it.
 - **Integrity guard** (off by default): denies reads of hidden benchmark answers, including web searches for them, and warns before edits touch test, scoring, or CI assets, keeping action rights separate from self-grading rights.
-- **Grouped settings panel**: configuration is grouped into Basics / Flavor & role / Reminders & verification, with the last group collapsed by default.
+- **Progressive prompt loading**: added `fidelity: lean | balanced | full`; default `balanced`, `lean` saves more context, and `full` restores the complete original prompt. `pua_reference` supports `path=index` and a `section` argument.
+- **Grouped settings panel**: configuration is grouped into Basics / Prompt loading / Flavor & role / Reminders & verification, with the last group collapsed by default.
 - **Global defaults with per-session overrides**: plugin settings store global defaults; the chat panel adjusts the current session only, restoring inheritance per item or all at once.
 
 Results depend on the model and task. The plugin does not guarantee a solution every time.

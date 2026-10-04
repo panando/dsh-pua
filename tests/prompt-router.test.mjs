@@ -94,3 +94,10 @@ test("parsePatch 接受 fidelity 覆盖与恢复继承", () => {
   assert.deepEqual(parsePatch({ fidelity: "full" }), { fidelity: "full" });
   assert.deepEqual(parsePatch({ fidelity: null }), { fidelity: null });
 });
+
+test("catalog.index 汇总路径与章节，供 pua_reference 按需定位", () => {
+  const index = catalog.index();
+  assert.match(index, /skills\/pua\/SKILL\.md/u);
+  assert.match(index, /## 三条红线/u);
+  assert.match(index, /skills\/pua-ja\/SKILL\.md/u);
+});

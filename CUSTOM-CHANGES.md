@@ -8,7 +8,7 @@
 
 ### 提示词渐进加载 + `fidelity`
 
-PUA 开启后不再把当前模式的完整原文一次性注入 system prompt，而是按 mode、flavor、failureCount、integrity、display 等状态动态加载原文切片。默认 `balanced`；新增 `fidelity: balanced | full`，`full` 回退完整原文。`alwaysOn` schema 默认改为 `false`。
+PUA 开启后不再把当前模式的完整原文一次性注入 system prompt，而是按 mode、flavor、failureCount、integrity、display 等状态动态加载原文切片。默认 `balanced`；新增 `fidelity: lean | balanced | full`，`full` 回退完整原文；`lean` 进一步推迟 methodology-router 与 display-protocol。`alwaysOn` schema 默认改为 `false`。
 
 ### `pua_reference` 定位能力
 

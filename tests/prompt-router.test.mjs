@@ -80,10 +80,11 @@ test("fidelity full 回退完整原版，balanced 走按需切片", () => {
   assert.match(full, /\*\*旁白示范\*\*/u);
 });
 
-test("fidelity 配置契约只接受 balanced 与 full", () => {
+test("fidelity 配置契约只接受 lean、balanced 与 full", () => {
   assert.equal(CONFIG_DEFAULTS.fidelity, "balanced");
   assert.equal(configSchema.parse({ ...CONFIG_DEFAULTS, fidelity: "full" }).fidelity, "full");
-  assert.throws(() => configSchema.parse({ ...CONFIG_DEFAULTS, fidelity: "lean" }));
+  assert.equal(configSchema.parse({ ...CONFIG_DEFAULTS, fidelity: "lean" }).fidelity, "lean");
+  assert.throws(() => configSchema.parse({ ...CONFIG_DEFAULTS, fidelity: "invalid" }));
 });
 
 test("fidelity 缺失时 schema 默认 balanced", () => {
@@ -100,4 +101,17 @@ test("catalog.index 汇总路径与章节，供 pua_reference 按需定位", () 
   assert.match(index, /skills\/pua\/SKILL\.md/u);
   assert.match(index, /## 三条红线/u);
   assert.match(index, /skills\/pua-ja\/SKILL\.md/u);
+});
+
+test("fidelity lean 进一步减少上下文且保留核心规则", () => {
+  const base = { mode: "pua", flavor: "auto", flavorLocked: false, failureCount: 0, loopActive: false, integrityTrigger: false };
+  const lean = renderPuaPrompt(catalog, { ...base, fidelity: "lean" });
+  const balanced = renderPuaPrompt(catalog, { ...base, fidelity: "balanced" });
+  assert.ok(Buffer.byteLength(lean, "utf8") < Buffer.byteLength(balanced, "utf8"));
+  assert.match(lean, /## 三条红线/u);
+  assert.match(lean, /## 核心行为协议/u);
+  assert.equal(lean.includes("## Phase 1：任务类型"), false);
+  assert.equal(lean.includes("## Banner"), false);
+  assert.match(balanced, /## Phase 1：任务类型/u);
+  assert.match(balanced, /## Banner/u);
 });

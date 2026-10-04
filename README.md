@@ -98,7 +98,7 @@ The panel is grouped into three sections:
 | **Flavor & role** | Flavor, persona mode | Choose `Auto` to route by task characteristics, or lock one flavor; personas include P7 / P9 / P10 / Pro |
 | **Reminders & verification** | Correction reminders, integrity guard, feedback reminders, Loop defaults | Collapsed by default. Covers terminal review, failure escalation, and quality prompts; integrity guard off by default; Loop takes a verification command, timeout, and iteration cap (0 = unlimited) |
 
-Subagent enablement also depends on the parent conversation's PUA switch. `fidelity` can be `balanced` (default, loads rule slices on demand) or `full` (full original prompt, higher context usage). Commands no longer change global settings.
+Subagent enablement also depends on the parent conversation's PUA switch. `fidelity` can be `lean` (minimal), `balanced` (default, loads rule slices on demand), or `full` (full original prompt, higher context usage). Commands no longer change global settings.
 
 ### Continue until verification passes
 

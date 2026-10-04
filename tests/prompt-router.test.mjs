@@ -1,4 +1,5 @@
 import test from "node:test";
+import { readFileSync } from "node:fs";
 import assert from "node:assert/strict";
 import { SourceCatalog } from "../lib/source.js";
 import { resolveActiveWorkers, WORKERS } from "../lib/worker-map.js";
@@ -114,4 +115,13 @@ test("fidelity lean 进一步减少上下文且保留核心规则", () => {
   assert.equal(lean.includes("## Banner"), false);
   assert.match(balanced, /## Phase 1：任务类型/u);
   assert.match(balanced, /## Banner/u);
+});
+
+const clientSource = readFileSync(new URL("../lib/client.js", import.meta.url), "utf8");
+
+test("client 配置面板把 fidelity 独立为提示词加载分区并带说明", () => {
+  assert.match(clientSource, /pua-sect-prompt/u);
+  assert.match(clientSource, /sections:\{prompt:"提示词加载"/u);
+  assert.match(clientSource, /descriptions:\{fidelity:"默认按需加载规则切片/u);
+  assert.doesNotMatch(clientSource, /"integrityGuard","fidelity"/u);
 });

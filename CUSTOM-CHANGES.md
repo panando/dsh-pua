@@ -4,6 +4,20 @@
 
 上游项目：https://github.com/MichengAI/dsh-pua （Apache-2.0，保留原 LICENSE / NOTICE）
 
+## 未发布
+
+### 提示词渐进加载 + `fidelity`
+
+PUA 开启后不再把当前模式的完整原文一次性注入 system prompt，而是按 mode、flavor、failureCount、integrity、display 等状态动态加载原文切片。默认 `balanced`；新增 `fidelity: balanced | full`，`full` 回退完整原文。`alwaysOn` schema 默认改为 `false`。
+
+### `pua_reference` 定位能力
+
+`pua_reference` 新增 `path=index` 汇总目录与章节，`section` 参数支持按二级标题或标题前缀读取章节，避免整文件读取。
+
+### 上下文收益
+
+默认 `pua/auto` 从约 53 KB 降到约 35 KB；失败升级与重型模式按原文切片加载，不额外增加模型轮次。
+
 ## 为什么要改
 
 上游把「全局开关 `alwaysOn`」当成**总闸**：全局关闭时

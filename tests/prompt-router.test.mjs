@@ -2,7 +2,9 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { SourceCatalog } from "../lib/source.js";
 import { resolveActiveWorkers, WORKERS } from "../lib/worker-map.js";
-import { renderActivePrompt } from "../lib/content.js";
+import { renderActivePrompt, renderPuaPrompt } from "../lib/content.js";
+
+import { CONFIG_DEFAULTS, configSchema, parsePatch } from "../lib/configuration.js";
 
 const CORE = "skills/pua/SKILL.md";
 const catalog = new SourceCatalog();
@@ -57,4 +59,38 @@ test("锁定风味只加载对应风味与方法论", () => {
   assert.match(prompt, /华为/u);
   assert.match(prompt, /methodology-huawei|RCA|蓝军/u);
   assert.equal(prompt.includes("Tesla/SpaceX 味道方法论"), false);
+});
+
+test("readReference 支持 exact section、prefix 和整文件", () => {
+  assert.match(catalog.readReference(CORE, "三条红线（安全红线，碰了就是 3.25）"), /三条红线/u);
+  assert.match(catalog.readReference(CORE, "三条红线"), /闭环意识/u);
+  assert.equal(catalog.readReference(CORE, ""), catalog.read(CORE));
+});
+
+test("integrityTrigger 时加载防作弊治理 worker", () => {
+  const ids = resolveActiveWorkers({ mode: "pua", flavor: "auto", flavorLocked: false, failureCount: 0, loopActive: false, integrityTrigger: true }).map(worker => worker.id);
+  assert.ok(ids.includes("phase.integrity"));
+});
+
+test("fidelity full 回退完整原版，balanced 走按需切片", () => {
+  const base = { mode: "pua", flavor: "auto", flavorLocked: false, failureCount: 0, loopActive: false, integrityTrigger: false };
+  const balanced = renderPuaPrompt(catalog, { ...base, fidelity: "balanced" });
+  const full = renderPuaPrompt(catalog, { ...base, fidelity: "full" });
+  assert.ok(Buffer.byteLength(balanced, "utf8") < Buffer.byteLength(full, "utf8"));
+  assert.match(full, /\*\*旁白示范\*\*/u);
+});
+
+test("fidelity 配置契约只接受 balanced 与 full", () => {
+  assert.equal(CONFIG_DEFAULTS.fidelity, "balanced");
+  assert.equal(configSchema.parse({ ...CONFIG_DEFAULTS, fidelity: "full" }).fidelity, "full");
+  assert.throws(() => configSchema.parse({ ...CONFIG_DEFAULTS, fidelity: "lean" }));
+});
+
+test("fidelity 缺失时 schema 默认 balanced", () => {
+  assert.equal(configSchema.parse({ ...CONFIG_DEFAULTS, fidelity: undefined }).fidelity, "balanced");
+});
+
+test("parsePatch 接受 fidelity 覆盖与恢复继承", () => {
+  assert.deepEqual(parsePatch({ fidelity: "full" }), { fidelity: "full" });
+  assert.deepEqual(parsePatch({ fidelity: null }), { fidelity: null });
 });

@@ -1,5 +1,25 @@
 # 更新记录
 
+## 0.2.0
+
+### 中文
+
+- 提示词按需渐进加载：PUA 开启后按 mode / flavor / failureCount / integrity 动态组装原文切片，不再一次性注入完整正文。
+- 新增 `fidelity: lean | balanced | full`：默认 `balanced`；`lean` 进一步推迟 methodology-router 与 display-protocol；`full` 回退完整原版。
+- `pua_reference` 支持 `path=index` 汇总章节，以及 `section` 参数按标题或前缀读取章节。
+- 配置面板新增独立「提示词加载」分区，字段名为「加载策略」，并带说明。
+- `alwaysOn` schema 默认改为 `false`，与 fork 的默认关闭意图一致。
+- 默认 `pua/auto` system prompt 从约 53 KB 降到约 35 KB（lean 约 27 KB）。
+
+### English
+
+- Progressive prompt loading: after PUA is enabled, the system prompt is assembled from original rule slices based on mode, flavor, failure count, and integrity state instead of injecting the full text at once.
+- Added `fidelity: lean | balanced | full`; default is `balanced`. `lean` further defers methodology-router and display-protocol; `full` restores the complete original prompt.
+- `pua_reference` now supports `path=index` and a `section` argument for exact or prefix-matched section reads.
+- The settings panel has a dedicated Prompt loading section with a Prompt strategy field and help text.
+- `alwaysOn` schema default is now `false`, matching the fork default-off intent.
+- Default `pua/auto` system prompt dropped from about 53 KB to about 35 KB (about 27 KB in lean mode).
+
 ## 0.1.4
 
 ### 中文

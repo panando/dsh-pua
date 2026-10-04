@@ -4,7 +4,7 @@
 
 上游项目：https://github.com/MichengAI/dsh-pua （Apache-2.0，保留原 LICENSE / NOTICE）
 
-## 未发布
+## 0.2.0
 
 ### 提示词渐进加载 + `fidelity`
 
